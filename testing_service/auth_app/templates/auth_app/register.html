@@ -1,0 +1,16 @@
+{% load static %}
+
+<div>
+    <form action="{% url 'auth:register' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button type="submit">
+                Зарегистрироваться
+            </button>
+            <p>
+                <a href="#">Уже есть учетная запись? Войти!</a>
+            </p>
+        </div>
+    </form>
+</div>
