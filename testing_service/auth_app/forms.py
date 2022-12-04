@@ -1,10 +1,10 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from auth_app.models import User
 
 
 class UserRegisterForm(UserCreationForm):
-    """Форма регистрации"""
+    """Registration form"""
 
     class Meta:
         model = User
@@ -14,5 +14,12 @@ class UserRegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            # field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
+
+
+class UserLoginForm(AuthenticationForm):
+    """Authorization form"""
+
+    class Meta:
+        model = User
+        fields = ('username', 'password')
