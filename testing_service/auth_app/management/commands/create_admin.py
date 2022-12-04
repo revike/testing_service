@@ -12,4 +12,4 @@ class Command(BaseCommand):
                                    is_superuser=True, is_active=True):
             User.objects.create_superuser(
                 username=ADMIN_LOGIN, password=ADMIN_PASSWORD, is_active=True,
-                email=ADMIN_EMAIL, is_verify=True)
+                email=ADMIN_EMAIL)
