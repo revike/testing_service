@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'main_app',
     'auth_app',
+    'nested_inline',
 ]
 
 MIDDLEWARE = [

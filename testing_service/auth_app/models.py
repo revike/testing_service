@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    """Таблица пользователя"""
+    """Table user"""
 
     class Meta:
         db_table = "users"
