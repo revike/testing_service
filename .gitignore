@@ -8,4 +8,4 @@ db.sqlite3
 venv
 .env
 media/
-static/
+/testing_service/static/

@@ -2,32 +2,34 @@
 {% load static %}
 
 {% block content %}
-    <div>
-        {{ object.name }}
-        {{ object.description }}
-    </div>
-
-
-    <div>
-        <form method="post">
-            {% csrf_token %}
-            <p>{{ question.question }}</p>
-            {% if type_input == 'radio' %}
-                <p>Один правильный ответ</p>
-            {% else %}
-                <p>Возможно несколько правильных ответов</p>
-            {% endif %}
-            <div>
-                {% for response in responses %}
-                    <input type="{{ type_input }}" id="{{ response.id }}"
-                           name="response" value="{{ response }}">
-                    <label for="{{ response.id }}">{{ response.response }}</label>
-
-                {% endfor %}
-            </div>
-            <div>
-                <button type="submit">Ответить</button>
-            </div>
-        </form>
+    <div class="test_content">
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                <h4>{{ question.question }}</h4>
+                {% if type_input == 'radio' %}
+                    <p class="test_desc">Один правильный ответ</p>
+                {% else %}
+                    <p class="test_desc">Возможно несколько правильных
+                        ответов</p>
+                {% endif %}
+                <div class="test_responses">
+                    {% for response in responses %}
+                        <div class="test_response">
+                            <input type="{{ type_input }}"
+                                   id="{{ response.id }}"
+                                   name="response" value="{{ response }}">
+                            <label for="{{ response.id }}">{{ response.response }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="test_response_button">
+                    <button type="submit">Отправить ответ</button>
+                </div>
+            </form>
+        </div>
+        <div class="link_index">
+            <a href="{% url 'main:list_test' %}">На главную</a>
+        </div>
     </div>
 {% endblock %}

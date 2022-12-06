@@ -18,15 +18,14 @@ def get_context_for_questions(request, context, group_test):
 
     type_input = 'checkbox'
     true = random.randint(2, 4)
-    false = 4 - true
     if question.type == 'o':
         type_input = 'radio'
         true = 1
-        false = 3
 
     responses_true = ResponseTable.objects.filter(
         question__group_test=group_test, question=question,
         correct=True).order_by('?')[:true]
+    false = 4 - responses_true.count()
     responses_false = ResponseTable.objects.filter(
         question__group_test=group_test, question=question,
         correct=False).order_by('?')[:false]
