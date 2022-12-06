@@ -2,18 +2,26 @@
 {% load static %}
 
 {% block content %}
-    <div>
+    <div class="list_content">
+        {% if not object_list %}
+            <div class="list_block">
+                Для вас пока нет тестов
+            </div>
+        {% endif %}
         {% for object in object_list %}
-            <div>{{ object.name }}</div>
-            <div>{{ object.description }}</div>
-            <a href="{% url 'main:detail_test' pk=object.pk %}">
-                Пройти тест {{ object.name }}
-            </a>
+            <div class="list_block">
+                <div class="list_name">
+                    <h4>{{ object.name }}</h4>
+                </div>
+                <div class="list_description">
+                    <p>{{ object.description }}</p>
+                </div>
+                <div class="list_open">
+                    <a href="{% url 'main:detail_test' pk=object.pk %}">
+                        Пройти тест
+                    </a>
+                </div>
+            </div>
         {% endfor %}
-
-    <div>
-        <a href="{% url 'main:result_list' %}">Мои результаты</a>
-    </div>
-
     </div>
 {% endblock %}

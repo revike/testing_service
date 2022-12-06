@@ -1,16 +1,23 @@
+{% extends 'main_app/base.html' %}
 {% load static %}
 
-<div>
-    <form action="{% url 'auth:register' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div>
-            <button type="submit">
-                Зарегистрироваться
-            </button>
-            <p>
-                <a href="{% url 'auth:login' %}">Уже есть учетная запись? Войти!</a>
-            </p>
-        </div>
-    </form>
-</div>
+{% block content %}
+    <div class="auth_form">
+        <form action="{% url 'auth:register' %}" method="post">
+            <div class="auth_container">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <hr>
+                <p>Уже есть учетная запись?
+                    <a href="{% url 'auth:login' %}">
+                        Войти!</a>
+                </p>
+                <div>
+                    <button class="auth_btn" type="submit">
+                        Зарегистрироваться
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
