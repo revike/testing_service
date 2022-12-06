@@ -74,17 +74,16 @@ class ResultTable(models.Model):
                              verbose_name='пользователь')
     group_test = models.ForeignKey(GroupTest, on_delete=models.CASCADE,
                                    verbose_name='тест')
+    questions = models.ManyToManyField(Question, verbose_name='вопросы')
     count_correct = models.PositiveSmallIntegerField(
         verbose_name='правильные ответы')
     count_not_correct = models.PositiveSmallIntegerField(
         verbose_name='неправильные ответы')
     result = models.DecimalField(
-        max_digits=5, decimal_places=2, default=0, verbose_name='результат',
+        max_digits=3, decimal_places=0, default=0,
+        verbose_name='результат (%)',
         validators=[MinValueValidator(Decimal('0.00'))])
-    best_result = models.DecimalField(
-        max_digits=5, decimal_places=2, default=0,
-        verbose_name='лучший результат',
-        validators=[MinValueValidator(Decimal('0.00'))])
+    completed = models.BooleanField(default=False, verbose_name='завершен')
     created = models.DateTimeField(auto_now_add=True, verbose_name='создан')
     updated = models.DateTimeField(auto_now=True, verbose_name='изменен')
 

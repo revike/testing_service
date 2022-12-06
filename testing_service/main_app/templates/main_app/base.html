@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            {{ title|capfirst }}
+        {% endblock %}
+    </title>
+
+    {% block css %}
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}
+</head>
+<body>
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+    <p><a href="{% url 'main:list_test' %}">&copy; Testing service {% now 'Y' %}</a></p>
+{% endblock %}
+
+</body>
+</html>

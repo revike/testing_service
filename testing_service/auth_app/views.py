@@ -27,7 +27,7 @@ class RegisterView(generic.CreateView):
             form.save()
             user = auth.authenticate(username=username, password=password)
             auth.login(self.request, user)
-            return HttpResponseRedirect(reverse('admin:index'))
+            return HttpResponseRedirect(reverse('main:list_test'))
 
     @method_decorator(user_passes_test(lambda u: u.is_anonymous))
     def dispatch(self, *args, **kwargs):
@@ -48,7 +48,7 @@ class LoginUserView(LoginView):
     def form_valid(self, form):
         if form.is_valid():
             super().form_valid(form)
-            return HttpResponseRedirect(reverse('admin:index'))
+            return HttpResponseRedirect(reverse('main:list_test'))
 
     @method_decorator(user_passes_test(lambda u: u.is_anonymous))
     def dispatch(self, *args, **kwargs):

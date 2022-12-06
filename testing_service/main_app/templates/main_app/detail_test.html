@@ -1,0 +1,33 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div>
+        {{ object.name }}
+        {{ object.description }}
+    </div>
+
+
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            <p>{{ question.question }}</p>
+            {% if type_input == 'radio' %}
+                <p>Один правильный ответ</p>
+            {% else %}
+                <p>Возможно несколько правильных ответов</p>
+            {% endif %}
+            <div>
+                {% for response in responses %}
+                    <input type="{{ type_input }}" id="{{ response.id }}"
+                           name="response" value="{{ response }}">
+                    <label for="{{ response.id }}">{{ response.response }}</label>
+
+                {% endfor %}
+            </div>
+            <div>
+                <button type="submit">Ответить</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
