@@ -93,7 +93,42 @@ class TestingDetailView(generic.DetailView, generic.CreateView):
         return super().dispatch(*args, **kwargs)
 
 
-class ResultView(generic.DetailView):
+class ResultDetailView(generic.DetailView):
     """Result"""
     template_name = 'main_app/result.html'
     model = ResultTable
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Результат'
+        return context
+
+    def get_queryset(self):
+        queryset = self.model.objects.filter(user=self.request.user,
+                                             completed=True)
+        return queryset
+
+    @method_decorator(user_passes_test(lambda u: not u.is_anonymous))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+
+class ResultListView(generic.ListView):
+    """Result list"""
+    template_name = 'main_app/result_list.html'
+    model = ResultTable
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Результаты'
+        return context
+
+    def get_queryset(self):
+        queryset = self.model.objects.filter(user=self.request.user,
+                                             completed=True)
+        return queryset
+
+    @method_decorator(user_passes_test(lambda u: not u.is_anonymous))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+

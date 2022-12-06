@@ -1,0 +1,10 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% for object in object_list %}
+        <a href="{% url 'main:result' pk=object.pk %}">{{ object.group_test }}</a>
+        {{ object.result }}%
+    {% endfor %}
+
+{% endblock %}
