@@ -18,6 +18,7 @@
 <body>
 
 {% block header %}
+    <a href="{% url 'auth:logout' %}">Logout</a>
 {% endblock %}
 
 {% block content %}
