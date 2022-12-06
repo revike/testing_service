@@ -81,7 +81,7 @@ class TestingDetailView(generic.DetailView, generic.CreateView):
 
     def get(self, request, *args, **kwargs):
         result = ResultTable.objects.filter(user=request.user,
-                                            group_test=self.get_object(),
+                                            group_test=self.kwargs['pk'],
                                             completed=True)
         if result:
             return HttpResponseRedirect(reverse(
