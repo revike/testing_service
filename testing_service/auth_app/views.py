@@ -1,6 +1,6 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import user_passes_test
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
@@ -53,3 +53,7 @@ class LoginUserView(LoginView):
     @method_decorator(user_passes_test(lambda u: u.is_anonymous))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
+
+
+class LogoutUser(LogoutView):
+    """Logout user"""

@@ -131,4 +131,3 @@ class ResultListView(generic.ListView):
     @method_decorator(user_passes_test(lambda u: not u.is_anonymous))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
-
