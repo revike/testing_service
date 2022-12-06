@@ -9,15 +9,17 @@ from main_app.models import GroupTest, ResponseTable, Question, \
 @admin.register(ResultTable)
 class ResultTableAdmin(admin.ModelAdmin):
     """Admin panel appearance settings"""
-    list_display = ('id', 'user', 'group_test', 'result', 'best_result')
-    list_display_links = ('id', 'user', 'group_test', 'result', 'best_result')
+    list_display = (
+        'id', 'user', 'group_test', 'result', 'completed')
+    list_display_links = (
+        'id', 'user', 'group_test', 'result', 'completed')
     fields = (
-        'id', 'user', 'group_test', 'result', 'best_result', 'created',
-        'updated',)
+        'id', 'user', 'group_test', 'result', 'completed', 'created',
+        'updated', 'count_correct', 'count_not_correct')
     readonly_fields = (
-        'id', 'user', 'group_test', 'result', 'best_result', 'created',
-        'updated',)
-    list_filter = ('user__username',)
+        'id', 'user', 'group_test', 'result', 'completed',
+        'created', 'updated',)
+    list_filter = ('user__username', 'completed')
 
     def has_add_permission(self, request):
         return False
@@ -80,8 +82,8 @@ class GroupTestAdmin(NestedModelAdmin):
                         if not correct and not not_correct:
                             continue
                         if not correct or not not_correct:
-                            msg = u"Необходимо один правильный и один " \
-                                  u"неправильный ответ "
+                            msg = u"Необходимо хотя бы один правильный и " \
+                                  u"один неправильный ответ "
                             self.validate_form_admin(form, msg)
                             return False
 
