@@ -124,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 if DEBUG:
     INSTALLED_APPS.append('debug_toolbar')
     INSTALLED_APPS.append('template_profiler_panel')
-    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+    # MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
 
 
     def show_toolbar(request):
