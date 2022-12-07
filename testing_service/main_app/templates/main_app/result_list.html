@@ -1,0 +1,23 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="res_list_content">
+    {% if not object_list %}
+            <div class="list_block">
+                Вы не прошли ни одного теста
+            </div>
+        {% endif %}
+        {% for object in object_list %}
+            <div class="res_list_test">
+            <a href="{% url 'main:result' pk=object.pk %}">{{ object.group_test }}</a>
+            <p>Результат: {{ object.result }}%</p>
+            </div>
+        {% endfor %}
+
+        <div class="link_index">
+            <a href="{% url 'main:list_test' %}">На главную</a>
+        </div>
+    </div>
+
+{% endblock %}
