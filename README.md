@@ -121,5 +121,6 @@
 ##### Запуск тестов (docker-compose должен быть запущен)
 ###### Тесты 
 ```
-docker-compose exec web python testing_service/manage.py test
+docker-compose exec web python3 testing_service/manage.py test main_app
+docker-compose exec web python3 testing_service/manage.py test auth_app
 ```
