@@ -23,6 +23,12 @@
         <div class="header_content">
             {% if not user.is_anonymous %}
                 <div class="header_string">
+                    {% if user.is_superuser %}
+                        <div class="header_result">
+                            <a class="header_result_button"
+                               href="{% url 'admin:index' %}">Админ панель</a>
+                        </div>
+                    {% endif %}
                     <div class="header_result">
                         <a class="header_result_button"
                            href="{% url 'main:result_list' %}">Мои
